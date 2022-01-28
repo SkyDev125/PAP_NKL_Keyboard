@@ -7,7 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:bluez/bluez.dart';
 import 'dart:developer';
 
-bool shiftBeingPressed = false;
+bool shiftBeingPressedL = false;
+bool shiftBeingPressedR = false;
 bool altGrBeingPressed = false;
 bool capsLockBeingPressed = false;
 bool numLockBeingPressed = false;
@@ -63,8 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
               KeyboardKey(
                 defaultH: defaultH,
                 multiplier: 1.25,
-                keyboardKey: "SHIFT",
-                affectedBy: 1,
+                keyboardKey: "SHIFT L",
+                affectedBy: 0,
               ),
               Padding(padding: EdgeInsets.only(right: defaultSpace)),
             ],
@@ -103,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               defaultH: defaultH,
               multiplier: 1.15,
               keyboardKey: "ALT GR",
-              affectedBy: 2,
+              affectedBy: 0,
             ),
             Padding(padding: EdgeInsets.only(right: defaultSpace)),
             KeyboardKey(
@@ -197,23 +198,27 @@ class _KeyboardKeyState extends State<KeyboardKey> {
       case 1:
         return Listener(
           onPointerDown: (down) => setState(() {
-            if (widget.keyboardKey == "SHIFT") {
-              shiftBeingPressed = true;
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = true;
             }
             log("down");
             beingPressed = true;
           }),
           onPointerUp: (up) => setState(() {
             log("up");
-            if (widget.keyboardKey == "SHIFT") {
-              shiftBeingPressed = false;
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = false;
             }
             beingPressed = false;
           }),
           child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: beingPressed ? Colors.grey : Colors.blueAccent,
+                color: beingPressed
+                    ? Colors.grey
+                    : shiftBeingPressedL | shiftBeingPressedR
+                        ? Colors.red
+                        : Colors.blue,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -226,22 +231,20 @@ class _KeyboardKeyState extends State<KeyboardKey> {
         return Listener(
           onPointerDown: (down) => setState(() {
             log("down");
-            if (widget.keyboardKey == "ALT GR") {
-              shiftBeingPressed = true;
-            }
             beingPressed = true;
           }),
           onPointerUp: (up) => setState(() {
             log("up");
-            if (widget.keyboardKey == "ALT GR") {
-              shiftBeingPressed = false;
-            }
             beingPressed = false;
           }),
           child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: beingPressed ? Colors.grey : Colors.blueAccent,
+                color: beingPressed
+                    ? Colors.grey
+                    : altGrBeingPressed
+                        ? Colors.red
+                        : Colors.blue,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -254,22 +257,26 @@ class _KeyboardKeyState extends State<KeyboardKey> {
         return Listener(
           onPointerDown: (down) => setState(() {
             log("down");
-            if (widget.keyboardKey == "SHIFT") {
-              shiftBeingPressed = true;
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = true;
             }
             beingPressed = true;
           }),
           onPointerUp: (up) => setState(() {
             log("up");
-            if (widget.keyboardKey == "SHIFT") {
-              shiftBeingPressed = false;
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = false;
             }
             beingPressed = false;
           }),
           child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: beingPressed ? Colors.grey : Colors.blueAccent,
+                color: beingPressed
+                    ? Colors.grey
+                    : capsLockBeingPressed
+                        ? Colors.red
+                        : Colors.blue,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -282,22 +289,26 @@ class _KeyboardKeyState extends State<KeyboardKey> {
         return Listener(
           onPointerDown: (down) => setState(() {
             log("down");
-            if (widget.keyboardKey == "SHIFT") {
-              shiftBeingPressed = true;
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = true;
             }
             beingPressed = true;
           }),
           onPointerUp: (up) => setState(() {
             log("up");
-            if (widget.keyboardKey == "SHIFT") {
-              shiftBeingPressed = false;
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = false;
             }
             beingPressed = false;
           }),
           child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: beingPressed ? Colors.grey : Colors.blueAccent,
+                color: beingPressed
+                    ? Colors.grey
+                    : numLockBeingPressed
+                        ? Colors.red
+                        : Colors.blue,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -310,10 +321,35 @@ class _KeyboardKeyState extends State<KeyboardKey> {
         return Listener(
           onPointerDown: (down) => setState(() {
             log("down");
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = true;
+            }
+            if (widget.keyboardKey == "SHIFT R") {
+              shiftBeingPressedR = true;
+            }
+            if (widget.keyboardKey == "ALT GR") {
+              altGrBeingPressed = true;
+            }
+            if (widget.keyboardKey == "CAPS LOCK") {
+
+              capsLockBeingPressed = !capsLockBeingPressed;
+            }
+            if (widget.keyboardKey == "NUM LOCK") {
+              numLockBeingPressed = !numLockBeingPressed;
+            }
             beingPressed = true;
           }),
           onPointerUp: (up) => setState(() {
             log("up");
+            if (widget.keyboardKey == "SHIFT L") {
+              shiftBeingPressedL = true;
+            }
+            if (widget.keyboardKey == "SHIFT R") {
+              shiftBeingPressedR = true;
+            }
+            if (widget.keyboardKey == "ALT GR") {
+              altGrBeingPressed = true;
+            }
             beingPressed = false;
           }),
           child: Container(
