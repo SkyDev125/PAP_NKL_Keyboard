@@ -1305,6 +1305,7 @@ class TurnDiscoverable extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
         iconSize: size,
+        color: discoverable ? Colors.blue : Colors.white,
         onPressed: () async {
           if (discoverable) {
           } else {
