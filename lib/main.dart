@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:bluez/bluez.dart';
 import 'dart:developer';
 
+import 'package:google_fonts/google_fonts.dart';
+
 bool shiftBeingPressedL = false;
 bool shiftBeingPressedR = false;
 bool altGrBeingPressed = false;
@@ -16,6 +18,7 @@ bool numLockBeingPressed = false;
 ValueNotifier<int> test = ValueNotifier(0);
 
 void main() {
+  GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const MyApp());
 }
 
@@ -28,7 +31,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: Colors.black),
+      theme: ThemeData.dark().copyWith(
+          textTheme: GoogleFonts.firaCodeTextTheme(
+            Theme.of(context)
+                .textTheme, // If this is not set, then ThemeData.light().textTheme is used.
+          ),
+          scaffoldBackgroundColor: Colors.black),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
