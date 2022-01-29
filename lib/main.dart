@@ -1297,14 +1297,19 @@ class _KeyboardKeyState extends State<KeyboardKey> {
   }
 }
 
-class TurnDiscoverable extends StatelessWidget {
+class TurnDiscoverable extends StatefulWidget {
   final double size;
   const TurnDiscoverable({Key? key, required this.size}) : super(key: key);
 
   @override
+  State<TurnDiscoverable> createState() => _TurnDiscoverableState();
+}
+
+class _TurnDiscoverableState extends State<TurnDiscoverable> {
+  @override
   Widget build(BuildContext context) {
     return IconButton(
-        iconSize: size,
+        iconSize: widget.size,
         color: discoverable ? Colors.blue : Colors.white,
         onPressed: () async {
           if (discoverable) {
@@ -1316,12 +1321,14 @@ class TurnDiscoverable extends StatelessWidget {
             log("im discoverable for 30sec");
             await adapter.setDiscoverable(true);
             discoverable = true;
+            setState(() {});
 
             await Future.delayed(const Duration(seconds: 60));
 
             await adapter.setDiscoverable(false);
             log("im no longer discoverable");
             discoverable = false;
+            setState(() {});
 
             await client.close();
           }
