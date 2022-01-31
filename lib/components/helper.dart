@@ -95,11 +95,14 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
                   color: beingPressed
                       ? Colors.grey
-                      : altGrBeingPressed
+                      : altGrBeingPressed &&
+                              (shiftBeingPressedL | shiftBeingPressedR)
                           ? Colors.purple
-                          : shiftBeingPressedL | shiftBeingPressedR
+                          : altGrBeingPressed
                               ? Colors.purple
-                              : Colors.blueAccent,
+                              : shiftBeingPressedL | shiftBeingPressedR
+                                  ? Colors.purple
+                                  : Colors.blueAccent,
                 ),
                 child: SizedBox(
                     height: widget.defaultH,
@@ -369,11 +372,14 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: beingPressed
                     ? Colors.grey
-                    : altGrBeingPressed
+                    : altGrBeingPressed &&
+                            (shiftBeingPressedL | shiftBeingPressedR)
                         ? Colors.purple
-                        : shiftBeingPressedL | shiftBeingPressedR
+                        : altGrBeingPressed
                             ? Colors.purple
-                            : Colors.blueAccent,
+                            : shiftBeingPressedL | shiftBeingPressedR
+                                ? Colors.purple
+                                : Colors.blueAccent,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -406,6 +412,76 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                                           fontSize: widget.textSize,
                                           fontWeight: FontWeight.bold))))),
         );
+
+      //Affected bz shift or Capslock (on the first two)
+      //and on altGr or AltGr and Shift
+      case 9:
+        return Listener(
+            onPointerDown: (down) => setState(() {
+                  beingPressed = true;
+                }),
+            onPointerUp: (up) => setState(() {
+                  beingPressed = false;
+                }),
+            child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(5)),
+                  color: beingPressed
+                      ? Colors.grey
+                      : altGrBeingPressed &&
+                              (shiftBeingPressedL | shiftBeingPressedR)
+                          ? Colors.purple
+                          : altGrBeingPressed
+                              ? Colors.purple
+                              : shiftBeingPressedL | shiftBeingPressedR
+                                  ? Colors.purple
+                                  : Colors.blueAccent,
+                ),
+                child: SizedBox(
+                    height: widget.defaultH,
+                    width: widget.defaultH * widget.multiplier,
+                    child: Center(
+                        child: altGrBeingPressed &&
+                                (shiftBeingPressedL | shiftBeingPressedR)
+                            //altGr and shift being pressed
+                            ? Text(widget.keyboardKey[3],
+                                style: TextStyle(
+                                    fontSize: widget.textSize,
+                                    fontWeight: FontWeight.bold))
+                            //altGr and shift not being pressed
+                            : altGrBeingPressed
+                                //altGr being pressed
+                                ? Text(widget.keyboardKey[2],
+                                    style: TextStyle(
+                                        fontSize: widget.textSize,
+                                        fontWeight: FontWeight.bold))
+                                //altGr not being pressed
+                                : capsLockBeingPressed
+                                    //CapsLock being pressed
+                                    ? shiftBeingPressedL | shiftBeingPressedR
+                                        //Shift being pressed
+                                        ? Text(widget.keyboardKey[0],
+                                            style: TextStyle(
+                                                fontSize: widget.textSize,
+                                                fontWeight: FontWeight.bold))
+                                        //Shift not being pressed
+                                        : Text(widget.keyboardKey[1],
+                                            style: TextStyle(
+                                                fontSize: widget.textSize,
+                                                fontWeight: FontWeight.bold))
+                                    //CapsLock not being pressed
+                                    : shiftBeingPressedL | shiftBeingPressedR
+                                        //Shift being pressed
+                                        ? Text(widget.keyboardKey[1],
+                                            style: TextStyle(
+                                                fontSize: widget.textSize,
+                                                fontWeight: FontWeight.bold))
+                                        //Shift not being pressed
+                                        : Text(widget.keyboardKey[0],
+                                            style: TextStyle(
+                                                fontSize: widget.textSize,
+                                                fontWeight:
+                                                    FontWeight.bold))))));
 
       // Affected by Nothing
       default:
