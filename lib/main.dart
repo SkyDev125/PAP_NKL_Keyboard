@@ -20,7 +20,7 @@ bool numLockBeingPressed = false;
 ValueNotifier<int> test = ValueNotifier(0);
 
 bool discoverable = false;
-int language = 4;
+int language = 3;
 
 void main() {
   GoogleFonts.config.allowRuntimeFetching = false;

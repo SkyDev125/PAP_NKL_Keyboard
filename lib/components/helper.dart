@@ -46,9 +46,12 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: beingPressed
                     ? Colors.grey
-                    : shiftBeingPressedL | shiftBeingPressedR
-                        ? Colors.purple
-                        : Colors.blueAccent,
+                    : altGrBeingPressed &&
+                            (shiftBeingPressedL || shiftBeingPressedR)
+                        ? Colors.blueAccent
+                        : shiftBeingPressedL | shiftBeingPressedR
+                            ? Colors.purple
+                            : Colors.blueAccent,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -238,9 +241,12 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: beingPressed
                     ? Colors.grey
-                    : shiftBeingPressedL | shiftBeingPressedR
-                        ? Colors.purple
-                        : Colors.blueAccent,
+                    : altGrBeingPressed &&
+                            (shiftBeingPressedL || shiftBeingPressedR)
+                        ? Colors.blueAccent
+                        : shiftBeingPressedL | shiftBeingPressedR
+                            ? Colors.purple
+                            : Colors.blueAccent,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -273,11 +279,14 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: beingPressed
                     ? Colors.grey
-                    : altGrBeingPressed
-                        ? Colors.purple
-                        : shiftBeingPressedL | shiftBeingPressedR
+                    : altGrBeingPressed &&
+                            (shiftBeingPressedL || shiftBeingPressedR)
+                        ? Colors.blueAccent
+                        : altGrBeingPressed
                             ? Colors.purple
-                            : Colors.blueAccent,
+                            : shiftBeingPressedL | shiftBeingPressedR
+                                ? Colors.purple
+                                : Colors.blueAccent,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -329,11 +338,14 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: beingPressed
                     ? Colors.grey
-                    : altGrBeingPressed
-                        ? Colors.purple
-                        : shiftBeingPressedL | shiftBeingPressedR
+                    : altGrBeingPressed &&
+                            (shiftBeingPressedL || shiftBeingPressedR)
+                        ? Colors.blueAccent
+                        : altGrBeingPressed
                             ? Colors.purple
-                            : Colors.blueAccent,
+                            : shiftBeingPressedL | shiftBeingPressedR
+                                ? Colors.purple
+                                : Colors.blueAccent,
               ),
               child: SizedBox(
                   height: widget.defaultH,
@@ -413,7 +425,7 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                                           fontWeight: FontWeight.bold))))),
         );
 
-      //Affected bz shift or Capslock (on the first two)
+      //Affected by shift or Capslock (on the first two)
       //and on altGr or AltGr and Shift
       case 9:
         return Listener(
