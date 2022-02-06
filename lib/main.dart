@@ -20,9 +20,11 @@ bool numLockBeingPressed = false;
 ValueNotifier<int> test = ValueNotifier(0);
 
 bool discoverable = false;
-int language = 3;
+int language = 4;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   GoogleFonts.config.allowRuntimeFetching = false;
   runApp(const MyApp());
 }
