@@ -194,8 +194,9 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                       child: numLockBeingPressed
                           ? Text(widget.keyboardKey[1],
                               textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.bold))
+                              style: TextStyle(
+                                  fontSize: widget.textSize! + 3,
+                                  fontWeight: FontWeight.bold))
                           : Text(widget.keyboardKey[0],
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -223,8 +224,9 @@ class _KeyboardKeyState extends State<KeyboardKey> {
                   child: Center(
                       child: Text(widget.keyboardKey[0],
                           textAlign: TextAlign.center,
-                          style:
-                              const TextStyle(fontWeight: FontWeight.bold))))),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: widget.textSize))))),
         );
 
       //Affected by Shift key

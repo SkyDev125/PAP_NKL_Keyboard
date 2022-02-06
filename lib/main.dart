@@ -1,5 +1,3 @@
-//TODO: Make at least 2 versions of the Keyboard
-//TODO: Make keys update upon shift, alt etc
 //TODO: Make bluetooth connection and transmission of HID keyboard commands
 //TODO: Retrieve password information  and etc.
 
@@ -20,7 +18,7 @@ bool numLockBeingPressed = false;
 ValueNotifier<int> test = ValueNotifier(0);
 
 bool discoverable = false;
-int language = 4;
+int language = 0;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
