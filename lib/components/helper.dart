@@ -507,24 +507,24 @@ class _KeyboardKeyState extends State<KeyboardKey> {
               } else {
                 shiftBeingPressedR = true;
               }
-              test.value++;
+              colorShouldChange.value++;
             }
             if (widget.keyboardKey[0] == "ALT GR") {
               altGrBeingPressed = true;
-              test.value++;
+              colorShouldChange.value++;
             }
             if (widget.keyboardKey[0] == "CAPS LOCK") {
               if (capsLockBeingPressed == true) {
-                test.value--;
+                colorShouldChange.value--;
                 capsLockBeingPressed = false;
               } else {
-                test.value++;
+                colorShouldChange.value++;
                 capsLockBeingPressed = true;
               }
             }
             if (widget.keyboardKey[0] == "NUM LOCK") {
               numLockBeingPressed = !numLockBeingPressed;
-              test.value++;
+              colorShouldChange.value++;
             }
             beingPressed = true;
           }),
@@ -535,11 +535,11 @@ class _KeyboardKeyState extends State<KeyboardKey> {
               } else {
                 shiftBeingPressedR = false;
               }
-              test.value--;
+              colorShouldChange.value--;
             }
             if (widget.keyboardKey[0] == "ALT GR") {
               altGrBeingPressed = false;
-              test.value--;
+              colorShouldChange.value--;
             }
             beingPressed = false;
           }),
@@ -575,7 +575,7 @@ class _TurnDiscoverableState extends State<TurnDiscoverable> {
   Widget build(BuildContext context) {
     return IconButton(
         iconSize: widget.size,
-        color: discoverable ? Colors.blue : Colors.white,
+        color: discoverable ? Colors.blue : Colors.grey,
         onPressed: () async {
           if (discoverable) {
           } else {
@@ -598,6 +598,41 @@ class _TurnDiscoverableState extends State<TurnDiscoverable> {
             await client.close();
           }
         },
-        icon: const Icon(Icons.bluetooth_searching));
+        icon: Icon(discoverable
+            ? Icons.bluetooth_searching
+            : Icons.bluetooth_disabled));
+  }
+}
+
+class ComputerConnected extends StatelessWidget {
+  final double iconSize;
+  const ComputerConnected({Key? key, required this.iconSize}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+        valueListenable: computerIsConnected,
+        builder: (context, _, __) {
+          return Icon(Icons.computer,
+              color: computerConnected ? Colors.blueAccent : Colors.grey,
+              size: iconSize);
+        });
+  }
+}
+
+class PhoneConnected extends StatelessWidget {
+  final double iconSize;
+  const PhoneConnected({Key? key, required this.iconSize}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+        valueListenable: phoneIsConnected,
+        builder: (context, _, __) {
+          return Icon(
+              phoneConnected ? Icons.phonelink_lock : Icons.phonelink_erase,
+              color: phoneConnected ? Colors.blueAccent : Colors.grey,
+              size: iconSize);
+        });
   }
 }

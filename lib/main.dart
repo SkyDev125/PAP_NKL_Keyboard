@@ -14,8 +14,12 @@ bool shiftBeingPressedR = false;
 bool altGrBeingPressed = false;
 bool capsLockBeingPressed = false;
 bool numLockBeingPressed = false;
+bool phoneConnected = false;
+bool computerConnected = false;
 
-ValueNotifier<int> test = ValueNotifier(0);
+ValueNotifier<int> colorShouldChange = ValueNotifier(0);
+ValueNotifier<int> phoneIsConnected = ValueNotifier(0);
+ValueNotifier<int> computerIsConnected = ValueNotifier(0);
 
 bool discoverable = false;
 int language = 0;

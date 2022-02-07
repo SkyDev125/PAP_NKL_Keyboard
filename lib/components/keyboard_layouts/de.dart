@@ -24,7 +24,7 @@ class DeLayout extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ValueListenableBuilder(
-              valueListenable: test,
+              valueListenable: colorShouldChange,
               builder: (context, _, __) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.end,
