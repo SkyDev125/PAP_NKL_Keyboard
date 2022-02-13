@@ -30,7 +30,17 @@ class EnGbLayout extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(children: [TurnDiscoverable(size: defaultH)]),
+                    SizedBox(
+                      height: defaultH,
+                      width: width - defaultH - 65,
+                      child: Row(
+                        children: [
+                          TurnDiscoverable(size: defaultH),
+                          const Spacer(),
+                          PhoneConnected(iconSize: defaultH - 20),
+                        ],
+                      ),
+                    ),
 
                     Padding(padding: EdgeInsets.only(bottom: defaultH * 1)),
 
@@ -161,7 +171,8 @@ class EnGbLayout extends StatelessWidget {
                         affectedBy: 0,
                         textSize: 25,
                       ),
-                      Padding(padding: EdgeInsets.only(right: defaultH * 0.235)),
+                      Padding(
+                          padding: EdgeInsets.only(right: defaultH * 0.235)),
                       KeyboardKey(
                         defaultH: defaultH,
                         multiplier: 1,
@@ -302,7 +313,8 @@ class EnGbLayout extends StatelessWidget {
                         affectedBy: 0,
                         textSize: 22,
                       ),
-                      Padding(padding: EdgeInsets.only(right: defaultH * 0.235)),
+                      Padding(
+                          padding: EdgeInsets.only(right: defaultH * 0.235)),
                       KeyboardKey(
                         defaultH: defaultH,
                         multiplier: 1,
@@ -326,7 +338,8 @@ class EnGbLayout extends StatelessWidget {
                         affectedBy: 0,
                         textSize: 22,
                       ),
-                      Padding(padding: EdgeInsets.only(right: defaultH * 0.235)),
+                      Padding(
+                          padding: EdgeInsets.only(right: defaultH * 0.235)),
                       KeyboardKey(
                         defaultH: defaultH,
                         multiplier: 1,
@@ -467,7 +480,8 @@ class EnGbLayout extends StatelessWidget {
                         affectedBy: 0,
                         textSize: 22,
                       ),
-                      Padding(padding: EdgeInsets.only(right: defaultH * 0.235)),
+                      Padding(
+                          padding: EdgeInsets.only(right: defaultH * 0.235)),
                       KeyboardKey(
                         defaultH: defaultH,
                         multiplier: 1,
@@ -491,7 +505,8 @@ class EnGbLayout extends StatelessWidget {
                         affectedBy: 0,
                         textSize: 22,
                       ),
-                      Padding(padding: EdgeInsets.only(right: defaultH * 0.235)),
+                      Padding(
+                          padding: EdgeInsets.only(right: defaultH * 0.235)),
                       KeyboardKey(
                         defaultH: defaultH,
                         multiplier: 1,
@@ -923,6 +938,9 @@ class EnGbLayout extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Padding(padding: EdgeInsets.only(top: 37)),
+                ComputerConnected(iconSize: defaultH),
+                const Spacer(),
                 KeyboardKey(
                   defaultH: defaultH,
                   multiplier: 1,

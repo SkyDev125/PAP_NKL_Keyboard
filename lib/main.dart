@@ -22,7 +22,7 @@ ValueNotifier<int> phoneIsConnected = ValueNotifier(0);
 ValueNotifier<int> computerIsConnected = ValueNotifier(0);
 
 bool discoverable = false;
-int language = 0;
+int language = 3;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -30,7 +30,17 @@ class BeFrLayout extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(children: [TurnDiscoverable(size: defaultH)]),
+                    SizedBox(
+                      height: defaultH,
+                      width: width - defaultH - 65,
+                      child: Row(
+                        children: [
+                          TurnDiscoverable(size: defaultH),
+                          const Spacer(),
+                          PhoneConnected(iconSize: defaultH - 20),
+                        ],
+                      ),
+                    ),
 
                     Padding(padding: EdgeInsets.only(bottom: defaultH * 1)),
 
@@ -928,6 +938,9 @@ class BeFrLayout extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const Padding(padding: EdgeInsets.only(top: 37)),
+                ComputerConnected(iconSize: defaultH),
+                const Spacer(),
                 KeyboardKey(
                   defaultH: defaultH,
                   multiplier: 1,
