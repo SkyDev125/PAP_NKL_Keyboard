@@ -20,9 +20,9 @@ bool computerConnected = false;
 ValueNotifier<int> colorShouldChange = ValueNotifier(0);
 ValueNotifier<int> phoneIsConnected = ValueNotifier(0);
 ValueNotifier<int> computerIsConnected = ValueNotifier(0);
+ValueNotifier<int> language = ValueNotifier(0);
 
 bool discoverable = false;
-int language = 3;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,46 +68,50 @@ class _MyHomePageState extends State<MyHomePage> {
     double defaultH = height / 13.26;
     double defaultSpace = defaultH * 0.03;
 
-    switch (language) {
+    return ValueListenableBuilder(
+        valueListenable: language,
+        builder: (context, _, __) {
+          switch (language.value) {
 
-      //English - Uk - 809
-      case 1:
-        return EnGbLayout(
-            width: width,
-            height: height,
-            defaultH: defaultH,
-            defaultSpace: defaultSpace);
+            //English - Uk - 809
+            case 1:
+              return EnGbLayout(
+                  width: width,
+                  height: height,
+                  defaultH: defaultH,
+                  defaultSpace: defaultSpace);
 
-      //English - US - 409
-      case 2:
-        return EnUsLayout(
-            width: width,
-            height: height,
-            defaultH: defaultH,
-            defaultSpace: defaultSpace);
+            //English - US - 409
+            case 2:
+              return EnUsLayout(
+                  width: width,
+                  height: height,
+                  defaultH: defaultH,
+                  defaultSpace: defaultSpace);
 
-      //German - 407
-      case 3:
-        return DeLayout(
-            width: width,
-            height: height,
-            defaultH: defaultH,
-            defaultSpace: defaultSpace);
+            //German - 407
+            case 3:
+              return DeLayout(
+                  width: width,
+                  height: height,
+                  defaultH: defaultH,
+                  defaultSpace: defaultSpace);
 
-      //Belgian French - 80c
-      case 4:
-        return BeFrLayout(
-            width: width,
-            height: height,
-            defaultH: defaultH,
-            defaultSpace: defaultSpace);
+            //Belgian French - 80c
+            case 4:
+              return BeFrLayout(
+                  width: width,
+                  height: height,
+                  defaultH: defaultH,
+                  defaultSpace: defaultSpace);
 
-      default:
-        return PtPtLayout(
-            width: width,
-            height: height,
-            defaultH: defaultH,
-            defaultSpace: defaultSpace);
-    }
+            default:
+              return PtPtLayout(
+                  width: width,
+                  height: height,
+                  defaultH: defaultH,
+                  defaultSpace: defaultSpace);
+          }
+        });
   }
 }

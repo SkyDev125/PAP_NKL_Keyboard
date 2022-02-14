@@ -37,6 +37,14 @@ class EnGbLayout extends StatelessWidget {
                         children: [
                           TurnDiscoverable(size: defaultH),
                           const Spacer(),
+                          IconButton(
+                              onPressed: () {
+                                language.value = 2;
+                              },
+                              icon: const Icon(Icons.change_circle),
+                              color: Colors.blueAccent,
+                              iconSize: defaultH - 20),
+                          const Spacer(),
                           PhoneConnected(iconSize: defaultH - 20),
                         ],
                       ),
@@ -485,7 +493,7 @@ class EnGbLayout extends StatelessWidget {
                       KeyboardKey(
                         defaultH: defaultH,
                         multiplier: 1,
-                        keyboardKey: const ["DELETE"],
+                        keyboardKey: const ["DEL"],
                         affectedBy: 0,
                         textSize: 22,
                       ),

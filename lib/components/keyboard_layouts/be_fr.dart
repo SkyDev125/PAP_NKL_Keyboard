@@ -37,6 +37,14 @@ class BeFrLayout extends StatelessWidget {
                         children: [
                           TurnDiscoverable(size: defaultH),
                           const Spacer(),
+                          IconButton(
+                              onPressed: () {
+                                language.value = 0;
+                              },
+                              icon: const Icon(Icons.change_circle),
+                              color: Colors.deepOrangeAccent,
+                              iconSize: defaultH - 20),
+                          const Spacer(),
                           PhoneConnected(iconSize: defaultH - 20),
                         ],
                       ),

@@ -37,6 +37,14 @@ class DeLayout extends StatelessWidget {
                         children: [
                           TurnDiscoverable(size: defaultH),
                           const Spacer(),
+                          IconButton(
+                              onPressed: () {
+                                language.value = 4;
+                              },
+                              icon: const Icon(Icons.change_circle),
+                              color: Colors.yellowAccent,
+                              iconSize: defaultH - 20),
+                          const Spacer(),
                           PhoneConnected(iconSize: defaultH - 20),
                         ],
                       ),

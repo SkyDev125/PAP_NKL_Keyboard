@@ -37,6 +37,14 @@ class PtPtLayout extends StatelessWidget {
                         children: [
                           TurnDiscoverable(size: defaultH),
                           const Spacer(),
+                          IconButton(
+                              onPressed: () {
+                                language.value = 1;
+                              },
+                              icon: const Icon(Icons.change_circle),
+                              color: Colors.greenAccent,
+                              iconSize: defaultH - 20),
+                          const Spacer(),
                           PhoneConnected(iconSize: defaultH - 20),
                         ],
                       ),
