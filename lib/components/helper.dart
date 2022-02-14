@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bluez/bluez.dart';
 import 'dart:developer';
 import 'package:nkl_rp_app/main.dart';
-import 'package:process_run/shell.dart';
+//import 'package:process_run/shell.dart';
 
 class KeyboardKey extends StatefulWidget {
   final List<String> keyboardKey;
@@ -585,37 +585,37 @@ class _TurnDiscoverableState extends State<TurnDiscoverable> {
             BlueZAdapter adapter = client.adapters[0];
             adapter.setAlias("NKL");
 
-            var shell = Shell();
+            //var shell = Shell();
 
-            await shell.run('''
-            python3 ./python/test.py
-            ''');
+            //await shell.run('''
+            //python3 ./python/test.py
+            //''');
 
-            for (var device in client.devices) {
-              var services = device.gattServices;
-              if (services.isEmpty) {
-                continue;
-              }
-              log('Device ${device.alias}');
+            //for (var device in client.devices) {
+            //  var services = device.gattServices;
+            //  if (services.isEmpty) {
+            //    continue;
+            //  }
+            //  log('Device ${device.alias}');
 
-              for (var service in services) {
-                log('Service ${service.uuid}');
-                var characteristics = service.characteristics;
-                if (characteristics.isEmpty) {
-                  continue;
-                }
+            //  for (var service in services) {
+            //    log('Service ${service.uuid}');
+            //    var characteristics = service.characteristics;
+            //    if (characteristics.isEmpty) {
+            //      continue;
+            //    }
 
-                for (var characteristic in characteristics) {
-                  try {
-                    String characteristicValue =
-                        String.fromCharCodes(await characteristic.readValue());
-                    log("Data: $characteristicValue");
-                  } catch (e) {
-                    log(e.toString());
-                  }
-                }
-              }
-            }
+            //    for (var characteristic in characteristics) {
+            //      try {
+            //        String characteristicValue =
+            //            String.fromCharCodes(await characteristic.readValue());
+            //        log("Data: $characteristicValue");
+            //      } catch (e) {
+            //        log(e.toString());
+            //      }
+            //    }
+            //  }
+            //}
 
             log("im discoverable for 30sec");
             await adapter.setDiscoverable(true);
