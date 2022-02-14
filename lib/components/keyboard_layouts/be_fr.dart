@@ -821,7 +821,7 @@ class BeFrLayout extends StatelessWidget {
                         KeyboardKey(
                           defaultH: defaultH,
                           multiplier: 1,
-                          keyboardKey: const ["PG DW", "2"],
+                          keyboardKey: const ["PG DW", "3"],
                           affectedBy: 3,
                           textSize: 22,
                         ),
