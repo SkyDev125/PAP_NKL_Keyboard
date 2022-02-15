@@ -592,7 +592,7 @@ class _TurnDiscoverableState extends State<TurnDiscoverable> {
 
             var shell = Shell();
             shell.run('''
-                python3 ./bluez/test/simple-agent
+                ./autoAcceptPair.sh
             ''');
             log(shell.path);
 
