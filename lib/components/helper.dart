@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:bluez/bluez.dart';
 import 'dart:developer';
 import 'package:nkl_rp_app/main.dart';
-//import 'package:process_run/shell.dart';
+import 'package:process_run/shell.dart';
 
 class KeyboardKey extends StatefulWidget {
   final List<String> keyboardKey;
@@ -582,14 +582,19 @@ class _TurnDiscoverableState extends State<TurnDiscoverable> {
           } else {
             BlueZClient client = BlueZClient();
             await client.connect();
+
             BlueZAdapter adapter = client.adapters[0];
-            adapter.setAlias("NKL");
+            adapter.setAlias("NKL Keyboard");
 
-            //var shell = Shell();
+            //Automatically accepts any requests. vv
+            //
+            //bt-agent --capability=NoInputNoOutput &
 
-            //await shell.run('''
-            //python3 ./python/test.py
-            //''');
+            var shell = Shell();
+            shell.run('''
+                python3 ./bluez/test/simple-agent
+            ''');
+            log(shell.path);
 
             //for (var device in client.devices) {
             //  var services = device.gattServices;
@@ -627,9 +632,11 @@ class _TurnDiscoverableState extends State<TurnDiscoverable> {
             await adapter.setDiscoverable(false);
             log("im no longer discoverable");
             discoverable = false;
+            shell.kill();
+
             setState(() {});
 
-            await client.close();
+            //await client.close();
           }
         },
         icon: Icon(discoverable
